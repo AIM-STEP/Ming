@@ -561,10 +561,6 @@
         .plain li { padding: 4px 0 4px 20px; }
       }
 
-      @media (min-width: 861px) and (max-height: 1000px) {
-        .news li:nth-child(n + 6) { display: none; }
-      }
-
       @media (max-width: 1080px) {
         .streams { grid-template-columns: 1fr; gap: 10px; }
         .dots { display: none; }
@@ -591,6 +587,28 @@
       @media (prefers-reduced-motion: reduce) {
         .deck { scroll-behavior: auto; }
         * { transition: none !important; }
+      }
+      /* News：可滚动，支持带图片 / 视频的条目 */
+      .news { max-height: min(52vh, 520px); overflow-y: auto; padding-right: 6px; }
+      .news li.post { display: block; padding: 12px 0 14px; }
+      .post-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+        gap: 14px;
+        margin-top: 6px;
+      }
+      .post-body p { margin-bottom: 8px; }
+      .post-body p:last-child { margin-bottom: 0; }
+      .post-media { display: grid; gap: 8px; align-content: start; margin: 0; }
+      .post-media img,
+      .post-media video,
+      .post-media iframe {
+        display: block; width: 100%; height: auto;
+        border-radius: 4px; border: 1px solid var(--line);
+      }
+      @media (max-width: 860px) {
+        .news { max-height: none; overflow: visible; }
+        .post-grid { grid-template-columns: 1fr; }
       }
     </style>
   </head>
@@ -657,24 +675,23 @@
               </ol>
             </div>
           </div>
-
           <div>
             <div class="sub">
               <h3>News<em>most recent first</em></h3>
               <ul class="news">
-            <li>
+                        <li class="post">
               <span class="news-when">2026.09</span>
-              <span class="news-what"><b>GIN 2026</b> — Great to be at the Guidelines International Network (GIN) 2026 in Kuala Lumpur!Wonderful to reconnect with so many old friends and colleagues. Always inspiring to exchange ideas with people who share the goal of advancing trustworthy evidence and better clinical guidelines.</span>
-            </li>
-            <li>
-              <span class="news-when">2026.09</span>
-              <span class="news-what"><b>Lancet Respiratory</b> — Excited to share two new papers from our team, now published in The Lancet Respiratory Medicine! 1. Global hospital admission and case fatality risks among patients with influenza:  
-
-https://www.thelancet.com/journals/lanres/article/PIIS2213-2600(26)00200-6/abstract. 2. Risk factors for hospital admission and mortality in patients with influenza
-
-https://www.thelancet.com/article/S2213-2600(26)00195-5/abstract. Both systematic reviews and meta-analyses were conducted to support the update of WHO influenza clinical guidelines.
-
-Huge congratulations to Ya Gao, Liu Ming and the entire team!</span>
+              <span class="news-what"><b>GIN 2026</b> — Guidelines International Network, Kuala Lumpur.</span>
+              <div class="post-grid">
+                <div class="post-body">
+                  <p>Wonderful to reconnect with so many old friends and colleagues, meet the IMACE team and discuss opportunities for future collaboration, and catch up with friends from MAGIC.</p>
+                  <p>Always inspiring to exchange ideas with people who share the goal of advancing trustworthy evidence and better clinical guidelines.</p>
+                </div>
+                <figure class="post-media">
+                  <img src="images/gin-1.jpg" alt="GIN 2026 group photo" loading="lazy" />
+                  <img src="images/gin-2.jpg" alt="At the MAGIC booth" loading="lazy" />
+                </figure>
+              </div>
             </li>
               </ul>
             </div>
